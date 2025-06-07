@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get "genres/index"
   # get "homepage/index"
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
   root "homepage#index"
@@ -12,4 +13,9 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "posts#index"
+  resources :albums, only: [:index]
+  resources :artists, only: [:index]
+  resources :genres, only: [:index]
+  resources :playlists, only: [:index]
+  resources :tracks, only: [:index]
 end

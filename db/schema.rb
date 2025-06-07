@@ -10,11 +10,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_06_07_170753) do
+ActiveRecord::Schema[8.0].define(version: 2025_06_07_182304) do
   create_table "albums", force: :cascade do |t|
     t.integer "artist_id", null: false
     t.string "title", null: false
     t.string "cover_image"
+    t.string "image_url"
     t.index ["artist_id"], name: "index_albums_on_artist_id"
   end
 
