@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user: one
+  device_name: MyString
+  device_type: MyString
+  last_used: 2025-06-07
+
+two:
+  user: two
+  device_name: MyString
+  device_type: MyString
+  last_used: 2025-06-07
