@@ -1,0 +1,22 @@
+<h1>Tracks</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Album</th>
+      <th>Artist</th>
+      <th>Duration</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @tracks.each do |track| %>
+      <tr>
+        <td><%= track.title %></td>
+        <td><%= track.album.title if track.album %></td>
+        <td><%= track.artist.name if track.artist %></td>
+        <td><%= track.duration %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
