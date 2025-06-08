@@ -3,6 +3,7 @@
 <table>
   <thead>
     <tr>
+      <th>Username</th>
       <th>Email</th>
       <th>Created At</th>
     </tr>
@@ -10,6 +11,7 @@
   <tbody>
     <% @users.each do |user| %>
       <tr>
+        <td><%= user.username %></td>
         <td><%= user.email %></td>
         <td><%= user.created_at.strftime("%b %d, %Y") %></td>
       </tr>

@@ -1,0 +1,52 @@
+<h1><%= @user.username %>'s Profile</h1>
+
+<p><strong>Email:</strong> <%= @user.email %></p>
+
+<h2>Playlists</h2>
+<% if @playlists.any? %>
+  <% @playlists.each do |playlist| %>
+    <div class="playlist">
+      <h3><%= playlist.name %></h3>
+      <% if playlist.tracks.any? %>
+        <ul>
+          <% playlist.tracks.each do |track| %>
+            <li><%= track.title %> (Duration: <%= track.duration_ms / 1000 %>s)</li>
+          <% end %>
+        </ul>
+      <% else %>
+        <p>No tracks in this playlist yet.</p>
+      <% end %>
+    </div>
+  <% end %>
+<% else %>
+  <p>No playlists yet.</p>
+<% end %>
+
+<h2>Devices</h2>
+<% if @devices.any? %>
+  <ul>
+    <% @devices.each do |device| %>
+      <li><%= device.device_name %> (<%= device.device_type %>) - Last used: <%= device.last_used || 'Never' %></li>
+    <% end %>
+  </ul>
+<% else %>
+  <p>No devices registered.</p>
+<% end %>
+
+<h2>Subscriptions</h2>
+<% if @subscriptions.any? %>
+  <ul>
+    <% @subscriptions.each do |subscription| %>
+      <li>
+        Plan: <%= subscription.plan_type %>, 
+        Price: $<%= subscription.price %>, 
+        Active: <%= subscription.end_date.nil? || subscription.end_date >= Date.today ? 'Yes' : 'No' %>
+      </li>
+    <% end %>
+  </ul>
+<% else %>
+  <p>No active subscriptions.</p>
+<% end %>
+
+<%= link_to "Edit Profile", edit_user_registration_path, class: "btn btn-primary" %>
+<%= link_to "Back to Home", root_path, class: "btn btn-secondary" %>

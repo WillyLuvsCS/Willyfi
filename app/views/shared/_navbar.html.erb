@@ -1,0 +1,26 @@
+<nav style="background-color: #121212; padding: 12px 24px; display: flex; align-items: center; justify-content: space-between;">
+  <!-- Left side: Logo and nav links -->
+  <div style="display: flex; align-items: center; gap: 24px;">
+    <span style="color: #1DB954; font-weight: bold; font-size: 1.4rem;">Willyfi</span>
+    
+    <%= link_to "Home", root_path, style: "color: white; text-decoration: none;" %>
+    <%= link_to "Artists", artists_path, style: "color: white; text-decoration: none;" %>
+    <%= link_to "Albums", albums_path, style: "color: white; text-decoration: none;" %>
+    <%= link_to "Genres", genres_path, style: "color: white; text-decoration: none;" %>
+    <%= link_to "Tracks", tracks_path, style: "color: white; text-decoration: none;" %>
+    <%= link_to "Playlists", playlists_path, style: "color: white; text-decoration: none;" %>
+  </div>
+
+  <!-- Right side: Auth links -->
+  <div style="display: flex; align-items: center; gap: 12px;">
+    <% if user_signed_in? %>
+      <span style="color: white;">Hi, <%= current_user.username %></span>
+      <%= button_to "Logout", destroy_user_session_path, method: :delete,
+          form: { style: "display:inline;" },
+          class: "btn btn-danger", style: "background-color: #1DB954; border: none;" %>
+    <% else %>
+      <%= link_to "Sign In", new_user_session_path, style: "color: #1DB954; text-decoration: none; font-weight: bold;" %>
+      <%= link_to "Sign Up", new_user_registration_path, style: "color: white; text-decoration: none;" %>
+    <% end %>
+  </div>
+</nav>
