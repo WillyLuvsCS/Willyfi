@@ -76,4 +76,5 @@ Rails.application.configure do
     IPAddr.new("127.0.0.1"),       # localhost
     IPAddr.new("192.168.0.0/16")   # your LAN
   ]
+  config.hosts << "willyfi.xyz"
 end
