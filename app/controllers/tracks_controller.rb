@@ -1,5 +1,9 @@
 class TracksController < ApplicationController
-	def index
-    	@tracks = Track.all
+  def index
+    if params[:album_id]
+      @tracks = Track.where(album_id: params[:album_id])
+    else
+      @tracks = Track.all
     end
+  end
 end

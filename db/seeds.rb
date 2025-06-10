@@ -45,3 +45,41 @@ tracks.each do |track|
   )
 end
 
+# Clear existing data to avoid duplicates (optional)
+# You can comment this out if you don't want to delete all artists each time
+# Artist.destroy_all
+
+# Create Pink Floyd artist
+pink_floyd = Artist.create!(
+  name: "Pink Floyd",
+  genre: "Progressive Rock",
+  profile_image: Faker::Internet.url(host: 'example.com', path: '/images/pink_floyd_profile.jpg')
+)
+
+# Create Dark Side of the Moon album
+dark_side_album = pink_floyd.albums.create!(
+  title: "The Dark Side of the Moon"
+)
+
+# Create tracks for Dark Side of the Moon
+dsotm_tracks = [
+  { title: "Speak to Me", duration_ms: 90_000 },
+  { title: "Breathe", duration_ms: 163_000 },
+  { title: "On the Run", duration_ms: 215_000 },
+  { title: "Time", duration_ms: 413_000 },
+  { title: "The Great Gig in the Sky", duration_ms: 276_000 },
+  { title: "Money", duration_ms: 382_000 },
+  { title: "Us and Them", duration_ms: 462_000 },
+  { title: "Any Colour You Like", duration_ms: 205_000 },
+  { title: "Brain Damage", duration_ms: 228_000 },
+  { title: "Eclipse", duration_ms: 123_000 }
+]
+
+dsotm_tracks.each do |track|
+  dark_side_album.tracks.create!(
+    title: track[:title],
+    duration_ms: track[:duration_ms],
+    file_url: Faker::Internet.url(host: 'example.com', path: "/audio/#{track[:title].downcase.gsub(' ', '_')}.mp3")
+  )
+end
+

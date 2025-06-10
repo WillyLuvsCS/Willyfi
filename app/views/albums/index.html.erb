@@ -2,10 +2,10 @@
 
 <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
   <% @albums.each do |album| %>
-      <div class="p-4">
-        <h2 class="text-xl font-semibold"><%= album.title %></h2>
-        <p class="text-gray-600"><%= album.artist.name %></p>
-      </div>
+    <div class="p-4 border rounded-lg shadow-md">
+      <h2 class="text-xl font-semibold mb-2"><%= album.title %></h2>
+      <p class="text-gray-600 mb-4"><%= album.artist.name %></p>
+      <%= link_to "View Tracks", tracks_path(album_id: album.id), class: "btn btn-primary" %>
     </div>
   <% end %>
 </div>

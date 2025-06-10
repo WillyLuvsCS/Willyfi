@@ -1,5 +1,9 @@
 class AlbumsController < ApplicationController
   def index
-    @albums = Album.all
+    if params[:artist_id].present?
+      @albums = Album.where(artist_id: params[:artist_id])
+    else
+      @albums = Album.all
+    end
   end
 end
