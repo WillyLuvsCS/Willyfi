@@ -1,0 +1,25 @@
+<h1>New Subscription</h1>
+
+<%= form_with model: @subscription, local: true do |form| %>
+  <div class="mb-3">
+    <%= form.label :plan_type %>
+    <%= form.text_field :plan_type, class: "form-control" %>
+  </div>
+
+  <div class="mb-3">
+    <%= form.label :price %>
+    <%= form.number_field :price, step: 0.01, class: "form-control" %>
+  </div>
+
+  <div class="mb-3">
+    <%= form.label :start_date %>
+    <%= form.date_field :start_date, class: "form-control" %>
+  </div>
+
+  <div class="mb-3">
+    <%= form.label :end_date %>
+    <%= form.date_field :end_date, class: "form-control" %>
+  </div>
+
+  <%= form.submit "Create Subscription", class: "btn btn-primary" %>
+<% end %>

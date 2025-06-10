@@ -18,4 +18,6 @@ Rails.application.routes.draw do
   resources :playlists, only: [:index]
   resources :tracks, only: [:index]
   resources :genres, only: [:index]
+  resources :devices, only: [:new, :create, :index, :show]
+  resources :subscriptions, only: [:new, :create, :index, :show]
 end

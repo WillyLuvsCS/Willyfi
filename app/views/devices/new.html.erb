@@ -1,0 +1,22 @@
+<h1>Add a new device</h1>
+
+<%= form_with model: @device, local: true do |form| %>
+  <div class="mb-3">
+    <%= form.label :device_name %>
+    <%= form.text_field :device_name, class: "form-control", required: true %>
+  </div>
+
+  <div class="mb-3">
+    <%= form.label :device_type %>
+    <%= form.select :device_type, options_for_select(['iOS', 'Android', 'Windows PC', 'Linux', 'Mac'], @device.device_type), {}, class: "form-select", required: true %>
+  </div>
+
+  <div class="mb-3">
+    <%= form.label :last_used %>
+    <%= form.date_field :last_used, class: "form-control" %>
+  </div>
+
+  <%= form.submit "Add Device", class: "btn btn-primary" %>
+<% end %>
+
+<%= link_to "Back to Profile", user_path(current_user), class: "btn btn-secondary mt-3" %>

@@ -33,6 +33,9 @@
   <p>No devices registered.</p>
 <% end %>
 
+<%= link_to "Add a Device", new_device_path, class: "btn btn-primary" %>
+
+
 <h2>Subscriptions</h2>
 <% if @subscriptions.any? %>
   <ul>
@@ -46,7 +49,8 @@
   </ul>
 <% else %>
   <p>No active subscriptions.</p>
+
+  <%= link_to "Subscribe", new_subscription_path, class: "btn btn-success" %>
 <% end %>
 
 <%= link_to "Edit Profile", edit_user_registration_path, class: "btn btn-primary" %>
-<%= link_to "Back to Home", root_path, class: "btn btn-secondary" %>
