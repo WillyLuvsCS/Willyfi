@@ -1,7 +1,14 @@
 class Track < ApplicationRecord
   belongs_to :album
-  has_many :playlist_tracks, dependent: :destroy
-  has_many :playlists, through: :playlist_tracks
+  belongs_to :artist
+
+  before_validation :set_artist_from_album, on: :create
+
+  private
+
+  def set_artist_from_album
+    self.artist_id = album&.artist_id if album
+  end
 
   validates :title, presence: true
   validates :duration_ms, presence: true
