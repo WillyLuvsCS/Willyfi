@@ -1,5 +1,5 @@
 class GenresController < ApplicationController
   def index
-    @genres = Genre.all
+    @genres = Artist.distinct.pluck(:genre).sort
   end
 end

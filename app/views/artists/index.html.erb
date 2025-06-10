@@ -1,2 +1,23 @@
 <h1>Artists</h1>
-<p>List of artists will go here.</p>
+<% if params[:genre] %>
+  <h2>Browsing Artists in <%= params[:genre] %></h2>
+<% end %>
+
+<table class="artists">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Genre</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @artists.each do |artist| %>
+      <tr>
+        <td><%= artist.name %></td>
+        <td><%= artist.genre %></td>
+        <td><%= link_to "Show Albums", albums_path(artist_id: artist.id), class: "btn btn-primary" %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

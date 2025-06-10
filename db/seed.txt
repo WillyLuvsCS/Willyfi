@@ -13,7 +13,9 @@ artist = Artist.create!(
 
 # Create Abbey Road album
 album = artist.albums.create!(
-  title: "Abbey Road"
+  title: "Abbey Road",
+  cover_image: Faker::Internet.url(host: 'example.com', path: '/images/abbey_road_cover.jpg'),
+  image_url: Faker::Internet.url(host: 'example.com', path: '/images/abbey_road.jpg')
 )
 
 # Create tracks for Abbey Road

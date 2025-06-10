@@ -13,8 +13,9 @@ Rails.application.routes.draw do
 
   # App-specific resources (browsable music stuff)
   resources :albums, only: [:index]
-  resources :artists, only: [:index]
+  resources :artists, only: [:index, :show]
   resources :genres, only: [:index]
   resources :playlists, only: [:index]
   resources :tracks, only: [:index]
+  resources :genres, only: [:index]
 end
