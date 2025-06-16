@@ -1,7 +1,7 @@
-# db/seeds.rb
+
 require 'faker'
 
-# Clear existing data to avoid duplicates (optional, comment out if not needed)
+
 Artist.destroy_all
 
 # Create The Beatles artist
@@ -45,9 +45,6 @@ tracks.each do |track|
   )
 end
 
-# Clear existing data to avoid duplicates (optional)
-# You can comment this out if you don't want to delete all artists each time
-# Artist.destroy_all
 
 # Create Pink Floyd artist
 pink_floyd = Artist.create!(
