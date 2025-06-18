@@ -11,7 +11,7 @@ Rails.application.routes.draw do
   # Custom user-related pages (e.g. user profiles)
   resources :users, only: [:index, :show]
 
-  # App-specific resources (browsable music stuff)
+  
   resources :albums, only: [:index]
   resources :artists, only: [:index, :show]
   resources :genres, only: [:index]
