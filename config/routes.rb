@@ -16,7 +16,10 @@ Rails.application.routes.draw do
   resources :artists, only: [:index, :show]
   resources :genres, only: [:index]
   resources :playlists, only: [:index]
-  resources :tracks, only: [:index]
+  resources :tracks, only: [:index] do
+    patch :upload_audio, on: :member
+  end
+
   resources :genres, only: [:index]
   resources :devices, only: [:new, :create, :index, :show]
   resources :subscriptions, only: [:new, :create, :index, :show]

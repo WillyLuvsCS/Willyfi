@@ -1,21 +1,53 @@
-<h1>Tracks</h1>
+<h1 class="text-2xl font-bold mb-6">Tracks</h1>
 
-<table>
+<% if flash[:notice] %>
+  <div class="bg-green-100 text-green-800 px-4 py-2 rounded mb-4">
+    <%= flash[:notice] %>
+  </div>
+<% elsif flash[:alert] %>
+  <div class="bg-red-100 text-red-800 px-4 py-2 rounded mb-4">
+    <%= flash[:alert] %>
+  </div>
+<% end %>
+
+
+<table class="min-w-full table-auto border-collapse border border-gray-300">
   <thead>
-    <tr>
-      <th>Title</th>
-      <th>Album</th>
-      <th>Artist</th>
-      <th>Duration (ms)</th>
+    <tr class="bg-gray-100">
+      <th class="border border-gray-300 px-4 py-2">Title</th>
+      <th class="border border-gray-300 px-4 py-2">Album</th>
+      <th class="border border-gray-300 px-4 py-2">Artist</th>
+      <th class="border border-gray-300 px-4 py-2">Duration</th>
+      <th class="border border-gray-300 px-4 py-2">Audio</th>
+      <th class="border border-gray-300 px-4 py-2">Upload</th>
     </tr>
   </thead>
   <tbody>
     <% @tracks.each do |track| %>
       <tr>
-        <td><%= track.title %></td>
-        <td><%= track.album.title if track.album %></td>
-        <td><%= track.artist.name if track.artist %></td>
-        <td><%= track.duration_ms%></td>
+        <td class="border border-gray-300 px-4 py-2"><%= track.title %></td>
+        <td class="border border-gray-300 px-4 py-2"><%= track.album.title %></td>
+        <td class="border border-gray-300 px-4 py-2"><%= track.album.artist.name %></td>
+        <td class="border border-gray-300 px-4 py-2"><%= Time.at(track.duration_ms / 1000).strftime("%M:%S") %></td>
+        
+        <!-- Audio Player -->
+        <td class="border border-gray-300 px-4 py-2 text-center">
+          <% if track.audio_file.attached? %>
+            <audio id="audio-<%= track.id %>" src="<%= url_for(track.audio_file) %>"></audio>
+            <button onclick="document.getElementById('audio-<%= track.id %>').play()" class="bg-green-500 hover:bg-green-600 text-white px-2 py-1 rounded mr-1">▶</button>
+            <button onclick="document.getElementById('audio-<%= track.id %>').pause()" class="bg-red-500 hover:bg-red-600 text-white px-2 py-1 rounded">⏸</button>
+          <% else %>
+            <span class="text-gray-400 italic">No audio</span>
+          <% end %>
+        </td>
+
+        <!-- Upload Form -->
+        <td class="border border-gray-300 px-4 py-2">
+          <%= form_with url: upload_audio_track_path(track), method: :patch, local: true, multipart: true do |f| %>
+          <%= f.file_field :audio_file, accept: "audio/mpeg" %>
+          <%= f.submit "Upload" %>
+          <% end %>
+        </td>
       </tr>
     <% end %>
   </tbody>

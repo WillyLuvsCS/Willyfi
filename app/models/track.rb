@@ -1,7 +1,7 @@
 class Track < ApplicationRecord
   belongs_to :album
   belongs_to :artist
-
+  has_one_attached :audio_file 
   before_validation :set_artist_from_album, on: :create
 
   private
